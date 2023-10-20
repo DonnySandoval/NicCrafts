@@ -1,0 +1,51 @@
+/* Estilos para el menú */
+.navbar {
+  background-color: white; /* Fondo blanco */
+}
+li{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  color: black;
+}
+/* Estilo para el logo */
+.navbar-brand img {
+  max-width: 50px; /* Tamaño máximo del logo */
+  height: auto; /* Altura automática para mantener la proporción */
+}
+
+/* Estilos para el botón de hamburguesa en dispositivos móviles */
+.navbar-toggler-icon {
+  background-color: #007bff; /* Color del ícono del botón de hamburguesa */
+}
+
+/* Estilos para el menú responsivo */
+@media (max-width: 767px) {
+  /* Estilo para el menú desplegable en dispositivos móviles */
+  .navbar-collapse {
+    background-color: white; /* Fondo blanco para el menú desplegable */
+  }
+
+  /* Espaciado entre elementos del menú desplegable */
+  .navbar-nav {
+    padding-top: 10px;
+  }
+
+  /* Espaciado entre elementos de la lista del menú desplegable */
+  .navbar-nav .nav-item {
+    padding: 10px 0;
+  }
+
+  /* Cambia el color del botón de hamburguesa en dispositivos móviles */
+  .navbar-toggler-icon {
+    background-color: #333;
+  }
+
+  /* Cambia el color y la fuente del texto en dispositivos móviles */
+  .navbar-light .navbar-nav .nav-link {
+    color: #333;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente a Arial o la fuente deseada */
+    font-weight: bold; /* Puedes ajustar el peso de la fuente */
+    text-transform: uppercase; /* Convierte el texto en mayúsculas */
+    font-size: 16px; /* Tamaño de la fuente */
+  }
+}

@@ -1,0 +1,17 @@
+<h1>Contactar al Vendedor</h1>
+
+<% if @conversation %>
+  <%= form_with(model: [@product, @conversation], url: product_product_conversations_path(@product), method: :post) do |form| %>
+  <%= form.text_area :body, name: 'conversation[body]', placeholder: "Escribe tu mensaje..." %>
+  <%= form.submit "Enviar Mensaje" %>
+<% end %>
+
+<% else %>
+  <p>Ocurrió un error al cargar el formulario de conversación.</p>
+<% end %>
+
+
+
+
+
+

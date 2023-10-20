@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Carrito de Compras</title>
+</head>
+<body>
+  <%= render partial: '/components/menu' %>
+
+  <div class="container my-4">
+    <h1>Tu Carrito de Compras</h1>
+
+    <% current_user.carrito.carrito_items.each do |item| %>
+      <div class="card mb-1">
+        <div class="row no-gutters">
+          <div class="col-md-2">
+            <img src="<%= item.product.image_url %>" class="card-img img-fluid" alt="<%= item.product.name %>">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title"><%= item.product.name %></h5>
+              <p class="card-text"><%= item.product.description %></p>
+              <p class="card-text"><strong>Precio: $<%= item.product.price %></strong></p>
+              <button class="btn btn-danger" data-product-id="<%= item.product.id %>">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Resumen del Carrito</h5>
+        <p class="card-text">Total: $<%= current_user.carrito.total %></p>
+        <%= link_to "Realizar Compra", new_order_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const eliminarBotones = document.querySelectorAll('.btn-danger[data-product-id]');
+    eliminarBotones.forEach((boton) => {
+      boton.addEventListener('click', function() {
+        const productId = this.getAttribute('data-product-id');
+        eliminarProducto(productId);
+      });
+    });
+
+    function eliminarProducto(productId) {
+      fetch(`/carrito/eliminar_producto/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          location.reload();
+        } else {
+          alert('Error al eliminar el producto del carrito');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+  });
+</script>
+
+  
+
+
+</body>
+</html>

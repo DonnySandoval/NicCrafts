@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <style>
+    .cart-animation-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 80px; /* Ajusta el tamaño del logo según tus necesidades */
+      height: auto;
+      margin-right: 20px; /* Espacio entre el logo y la animación */
+    }
+
+    .cart {
+   
+      animation: moveCart 4s linear infinite;
+    }
+
+    @keyframes moveCart {
+      0% {
+        left: -40px;
+      }
+      100% {
+        left: calc(100% + 40px);
+      }
+    }
+  </style>
+
+  <div class="cart-animation-container">
+  <%= image_tag 'logo.png', class: 'logo', alt: 'Logo de la empresa' %>
+    <div class="cart"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=PT+Sans&family=Poppins:ital,wght@0,300;0,400;0,500;1,200;1,300;1,400&family=Roboto+Condensed:wght@700&display=swap');
+$color-yellow: #E6980A;
+$color-blue: #1923AE;
+$color-black: black;
+$color-white: snow;
+
+$font-family-Open: 'Open Sans', sans-serif;
+$font-family-Poppins: 'Poppins', sans-serif;
+$font-family-PT: 'PT Sans', sans-serif;
+$font-family-Roboto: 'Roboto Condensed', sans-serif;
+
+
+/* Estilos para la página de inicio de sesión 
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas más pequeñas 
+}
+
+.logo-container {
+    max-width: 40%; /* Ajusta el ancho del contenedor del logo 
+    flex-basis: 40%; /* Establece el tamaño base del contenedor del logo 
+    margin-right: 20px;
+}
+
+.logo {
+    max-width: 40%;
+    flex-basis: 40%;
+    margin-right: 20px;
+}
+
+.logo img {
+    max-width: 100%;
+    max-height: 200px;
+    margin: 0 auto;
+}
+
+.login-content {
+    flex: 1;
+}
+
+.field {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.actions input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.actions input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+*/
+@mixin DisplayFlex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#body{
+    background: url(fondoLogin.jpeg) no-repeat;
+    background-size: cover; 
+    height: 40rem;
+    @include DisplayFlex;
+    filter: brightness(100%);
+}
+.content{
+    border: 1px solid $color-white;
+    background-color: rgba($color: #FFF, $alpha: 0.84);
+    width: 60rem;
+    height: 29rem;
+    border-radius: 15px;
+    @include DisplayFlex;
+
+
+}
+.__content-login, .__content-logo{
+   
+    width: 27rem;
+    height: 25rem;
+    
+}
+.__login-text{
+   text-align: center;
+        h1{
+            font-family: $font-family-Poppins;
+            font-size: 25px;
+            font-weight: 450;
+        }
+        span{
+            font-family: $font-family-Open;
+            font-weight: 500;
+            color: $color-black;
+            margin-bottom:20px ;
+        }
+}
+.new_user{
+
+    height: 15rem;
+    @include DisplayFlex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15px;
+     
+}
+.new_user .field{
+    height: 6rem;
+    width: 20rem;
+    @include DisplayFlex;
+    flex-wrap: wrap;
+    padding: 5px;
+    
+    
+    .label{
+        width: 100%;   
+        font-family: $font-family-Open;
+        font-size: 14px;
+        font-weight: 600;
+       
+       }
+    .input{
+        width: 25rem;
+        height: 2rem;
+        border-radius: 10px;
+        border: 0.1rem solid black;
+        background: transparent; 
+        scale: 0.9;
+        transition: 300ms;
+
+                &:hover{
+                    scale: 1;
+                   border-color: $color-blue;
+                 
+                }
+        }
+    
+}
+.__login-field-forget-password{
+    a{
+    color: $color-black;
+    font-size: 17px;
+    margin: 5px;
+    font-family: $font-family-Open;
+        &:hover{
+            color: #1500ff;
+        }
+    }
+}
+.__field-btn-submit{
+    width: 20rem;
+    height: 2rem;
+    border-radius: 15px;
+    border: none;
+    background-color: $color-blue;
+    color: $color-white;
+    box-shadow: 1px 1px 1px black;
+    transition: 300ms;
+        &:hover{
+            background: #1500ff;
+        }
+}
+.__login-create-account{
+    text-align: center;
+    font-family: $font-family-Open;
+
+}
+.__content-logo{
+    @include DisplayFlex;
+        
+        img{
+            object-fit: cover;
+            width: 80%;
+            height: 80%;
+        }
+
+}
+
+
+
+
+/* Media query para dispositivos con un ancho máximo de 768px (ajustar según tus necesidades) */
+@media screen and (max-width: 768px) {
+    .login-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-container {
+        max-width: 80%; /* Ajusta el ancho del contenedor del logo en pantallas pequeñas */
+        flex-basis: 80%;
+        margin: 0 auto 20px auto; /* Centra el contenedor del logo y agrega margen inferior */
+    }
+}

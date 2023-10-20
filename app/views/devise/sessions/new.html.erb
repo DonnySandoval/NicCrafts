@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <%= stylesheet_link_tag 'login' %>
+
+</head>
+
+  <body id="body">
+  
+
+    <section class="content">
+        <section class="__content-login">
+            <section class="__login-text">
+                <h1>Bienvenidos de nuevo</h1>
+                <span>Estamos muy emocionados de tenerte de vuelta</span>
+            </section>
+            
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "login-form", id: "form") do |f| %>
+              
+                <div class="field">
+                     <%= f.label :email, class: "label"%>
+                     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+                </div>
+
+                <div class="field">
+                     <%= f.label :contraseña, class: "label" %>
+                    <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+                </div>
+
+                <div class="__login-field-forget-password">
+                    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                        <%= link_to "¿Olvidó su contraseña?", new_password_path(resource_name) %><br />
+                    <% end %>
+                </div>
+                
+                <div class="field">                   
+                    <%= f.submit "Log in", class: "__field-btn-submit" %>
+                <div>
+
+            <% end %>
+
+            <div class="__login-create-account">
+                <span>No tienes una cuenta?</span>
+                <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                    <%= link_to "Registrate", new_registration_path(resource_name) %><br />
+                <% end %>
+
+            </div>
+        </section>
+        <section class="__content-logo">
+            <img src="../assets/PageInicio/Logonew" alt="">
+        </section>
+
+           
+     </section>
+  
+</body>
+</html>

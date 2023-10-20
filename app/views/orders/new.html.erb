@@ -1,0 +1,26 @@
+
+
+<h1>Nuevo Pedido</h1>
+
+<%= form_for @order do |f| %>
+  <% @cart.each do |item| %>
+    <div class="field">
+      <strong>Producto:</strong> <%= item.product.name %>
+    </div>
+    <div class="field">
+      <strong>Cantidad:</strong> <%= item.quantity %>
+      <%= f.hidden_field :order_items_attributes, "0" => { product_id: item.product.id, quantity: item.quantity } %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dirección_de_envío %>
+    <%= f.text_field :shipping_address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Realizar Pedido" %>
+  </div>
+<% end %>
+
+<%= link_to "Volver al Historial de Pedidos", orders_path %>

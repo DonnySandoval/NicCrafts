@@ -1,0 +1,104 @@
+
+<%# 
+<p style="color: green"><%= notice %</p>
+
+<%# <h1>Products</h1>
+
+<div id="products">
+  % @products.each do |product| %
+    <%= render product %
+    <p>
+      <%= link_to "Show this product", product %
+    </p>
+  % end %
+</div>
+
+%= link_to "New product", new_product_path % %>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Vendedor</title>
+    <!-- Agrega el enlace a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <%= render partial: '/components/menu' %>
+
+    <!-- Contenido principal -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Barra lateral -->
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#productosSubMenu" aria-expanded="false">Productos</a>
+                    <div class="collapse" id="productosSubMenu">
+                        <a href="#" class="list-group-item list-group-item-action" onclick="mostrarContenido('añadirProducto')">Añadir Producto</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="mostrarContenido('stock')">Lista de productos</a>
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action">Pedidos</a>
+                    <a href="#" class="list-group-item list-group-item-action">Clientes</a>
+                    <a href="#" class="list-group-item list-group-item-action">Estadísticas</a>
+                </div>
+            </div>
+            <!-- Contenido principal del panel -->
+            <div class="col-lg-9">
+                <!-- Contenido del panel -->
+                <h1>Bienvenido, Nombre del Vendedor</h1>
+                <p>Este es tu panel de control. Aquí puedes administrar tus productos, ver los pedidos, interactuar con clientes y más.</p>
+
+                <!-- Contenido específico -->
+                <div id="añadirProducto" style="display: none;">
+                    <%= render "form", product: @product %>
+                </div>
+
+                <div id="stock" style="display: none;">
+                   <h1>Products</h1>
+
+<div id="products" class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="<%= product.image.url %>" class="card-img-top" alt="<%= product.name %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text"><%= product.description %></p>
+          <p class="card-text">$<%= number_to_currency(product.price) %></p>
+          <p>
+            <% if can? :update, product %>
+              <%= link_to "Editar producto", edit_product_path(product), class: "btn btn-secondary" %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap y jQuery al final del cuerpo del documento -->
+
+    
+    <script>
+        function mostrarContenido(id) {
+            // Oculta todos los contenidos específicos
+            document.getElementById('añadirProducto').style.display = 'none';
+            document.getElementById('stock').style.display = 'none';
+
+            // Muestra el contenido específico según la opción seleccionada
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+

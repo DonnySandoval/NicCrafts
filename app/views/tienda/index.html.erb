@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            margin: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card .card-body {
+            padding: 15px;
+        }
+
+        .product-card .card-title {
+            font-size: 22px;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-text {
+            font-size: 20px;
+            color: #6c757d;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 24px;
+            padding: 10px;
+        }
+
+        .list-group-item {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px 0;
+        }
+
+        .list-group-item a {
+            color: #343a40;
+            font-size: 18px;
+        }
+
+        .list-group-item a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para la lista de categorías */
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo para las imágenes de productos */
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Estilo para el campo de búsqueda */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para el botón de búsqueda */
+        .btn-search {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-search:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <%= render partial: '/components/menu' %>
+
+    <div class="container mt-5">
+        <%= render partial: '/components/carruofertas' %>
+        
+        <!-- Campo de búsqueda -->
+        
+        
+        <div class="row">
+            <!-- Columna de Categorías -->
+            <div class="col-lg-3">
+                <div class="card border-primary rounded-0">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Categorías</h4>
+                    </div>
+                    <ul class="list-group list-group-flush category-list">
+                        <li class="list-group-item">
+                            <%= link_to "Todos", tienda_index_path %>
+                        </li>
+                        <% Product.distinct.pluck(:category).each do |category| %>
+                            <li class="list-group-item">
+                                <%= link_to category, category: category, class: "text-primary" %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="row search-container">
+            <div class="col-lg-7">
+                <form action="/busqueda" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Buscar productos">
+                        <div class="input-group-append">
+                            <button class="btn btn-search" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+            </div>
+            
+            <!-- Columna de Productos -->
+            <div class="col-lg-9">
+                <div class="row">
+                    <% @products.each do |product| %>
+                        <div class="col-6 col-md-4 mb-4">
+                            <div class="card product-card">
+                                <img src="<%= product.image.url %>" alt="<%= product.name %>" class="product-image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= product.name %></h5>
+                                    <p class="card-text">$<%= number_to_currency(product.price) %></p>
+                                    <%= form_tag carrito_add_product_path(product, quantity: 1), method: :post, class: 'form-inline' do %>
+                                        <%= submit_tag 'Agregar al carrito', class: 'btn btn-primary' %>
+                                    <% end %>
+                                    <hr>
+                                    <%= link_to 'Ver', product_path(product), class: 'btn btn-primary btn-block' %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%= render partial: 'components/footer_mine' %>
+
+</body>
+</html>

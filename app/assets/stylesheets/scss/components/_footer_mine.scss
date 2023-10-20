@@ -1,0 +1,29 @@
+.footer{
+       
+    height: 10rem;
+    width: 100%;
+    background: #E6980A;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    top: 8rem;
+
+}
+.__footer-redes, .__footer-text{
+  
+    width: 100%;
+    height: 5rem;
+    margin: 5px;
+    font-weight: bold;
+
+}
+.__footer-iconos iconify-icon{
+    margin: 15px;
+
+}
+.__text-celular{
+    position: relative;
+    top: 35px;
+}

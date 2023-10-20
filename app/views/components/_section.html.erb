@@ -1,0 +1,42 @@
+<%= render partial: 'bootstrap/bootstrap_link' %>
+  <div class="__destacada-texto text-center fs-3 fw-bold">
+        <span class="text-center">Seccion destacada</span>
+    </div>
+
+
+<section class="seccion-destacada mt-2">
+ 
+      
+      <article class="__destacada-image">
+        <img src="../assets/PageInicio/ARTE.jfif" alt="">
+      </article>
+      
+
+      <div class="__destacada-descripcion text-center">
+        <p class="__descripcion-content text-black ">
+            Descripcion: Esta evocadora pintura presenta 
+            una escena donde un grupo de personas estan 
+            sobre el resplandeciente sol de fondo. Los tonos 
+            cálidos y la luz dorada del sol realzan las figuras 
+            humanas, creando una atmósfera de calidez y 
+            comunidad. Una obra que captura la energía y la 
+            alegría de la vida al aire libre y la interacción 
+            humana bajo la luminosidad del día
+        </p>
+        
+       <div class="__descripcion-button">
+  <% if user_signed_in? %>
+    <button class="__button-descip"><%= link_to "Comprar", '' %></button>
+  <% else %>
+    <button class="__button-descip"><%= link_to "Iniciar sesión", new_user_session_path %></button>
+  <% end %>
+</div>
+
+
+
+        
+        
+      </div>
+
+  </section>
+

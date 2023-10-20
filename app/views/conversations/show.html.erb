@@ -1,0 +1,10 @@
+<h1><%= @conversation.subject %></h1>
+
+<ul>
+  <% @conversation.messages.each do |message| %>
+    <li>
+      <%= message.sender.name %> dice:
+      <%= message.body %>
+    </li>
+  <% end %>
+</ul>
